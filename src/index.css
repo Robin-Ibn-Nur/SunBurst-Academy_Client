@@ -1,0 +1,13 @@
+body {
+    background-color: #1a202c;
+    font-weight: 700;
+}
+
+.active-link {
+    border-bottom: 2px solid lightgreen;
+
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

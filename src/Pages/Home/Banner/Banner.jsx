@@ -9,13 +9,13 @@ const Banner = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 2500);
+        }, 3000);
         return () => clearInterval(interval);
     }, [images.length]);
     return (
         <>
-            <div className="flex justify-center items-center h-screen">
-                <div className="w-2/3 h-80 rounded-lg overflow-hidden shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg border border-gray-200">
+            <div className="flex justify-center mt-5 h-screen">
+                <div className="w-2/3 h-80 rounded-lg overflow-hidden shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-lg border">
                     {images.map((image, i) => (
                         <img
                             key={i}

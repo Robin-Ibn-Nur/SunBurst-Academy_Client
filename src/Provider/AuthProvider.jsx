@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"
 import React from 'react';
 import app from "../Firebase/firebase.config";
+import axios from "axios";
 
 //auth context
 export const AuthContext = createContext(null);
@@ -45,19 +46,20 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             console.log('current user', currentUser)
             // get and set token
-            // if (currentUser) {
-            //     axios.post('https://server-liard-one.vercel.app/jwt-token', {
-            //         email: currentUser.email,
-            //     })
-            //         .then(data => {
-            //             // set access token when user log in or register
-            //             localStorage.setItem('access-token', data.data.token)
-            //             setLoading(false)
-            //         })
-            // } else {
-            //     // remove access token when user log out
-            //     localStorage.removeItem('access-token')
-            // }
+            if (currentUser) {
+                axios.post('https://sun-burst-academy-server.vercel.app/jwt-token', {
+                    email: currentUser.email,
+                })
+                    .then(data => {
+                        console.log(data);
+                        // set access token when user log in or register
+                        localStorage.setItem('access-token', data.data.token)
+                        setLoading(false)
+                    })
+            } else {
+                // remove access token when user log out
+                localStorage.removeItem('access-token')
+            }
             setLoading(false)
         })
         return () => {

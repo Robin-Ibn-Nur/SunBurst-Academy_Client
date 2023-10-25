@@ -12,41 +12,43 @@ const GoogleButton = ({ text }) => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    const handleGoogleLogIn = async () => {
-        try {
-            const result = await signInWithGoogle();
-            const { displayName, photoURL, email } = result.user;
-            const newUser = { name: displayName, email, photo: photoURL, role: "student" };
-            if (result.user) {
-                await updateUserProfile(displayName, photoURL);
-                const res = await axios.post('https://server-liard-one.vercel.app/users', newUser);
-
-                console.log(res);
-
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Welcome to the SunBurst - Academy',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-
-                navigate(from, { replace: true });
-            }
-        } catch (error) {
-            setLoading(false);
-            console.log(error.message);
-
-            if (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                    footer: `<a href="">${error.message}</a>`
-                });
-            }
-        }
-    };
+    const handleGoogleLogIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const { displayName, photoURL, email } = result.user;
+                if (result?.user) {
+                    updateUserProfile(displayName, photoURL)
+                        .then(() => {
+                            axios.post('https://sun-burst-academy-server.vercel.app/users', { name: displayName, email, photo: photoURL, role: "student" })
+                                .then(res => {
+                                    console.log(res);
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'Welcome to the SunBurst - Academy',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    })
+                                    navigate(from, { replace: true })
+                                }).catch(error => {
+                                    setLoading(false)
+                                    console.log(error);
+                                })
+                        }).catch(error => console.log(error))
+                }
+            }).catch(error => {
+                setLoading(false)
+                console.log(error.message);
+                if (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        footer: `<a href="">${error.message}</a>`
+                    })
+                }
+            })
+    }
 
     return (
         <Button

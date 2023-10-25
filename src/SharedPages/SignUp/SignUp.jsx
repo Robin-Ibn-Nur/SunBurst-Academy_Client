@@ -37,7 +37,7 @@ const SignUp = () => {
                     updateUserProfile(data?.name, data?.photoUrl)
                         // update user profile
                         .then(() => {
-                            axios.post('https://server-liard-one.vercel.app/users', { name: data?.name, email: data?.email, photo: data?.photoUrl, role: "student" })
+                            axios.post('https://sun-burst-academy-server.vercel.app/users', { name: data?.name, email: data?.email, photo: data?.photoUrl, role: "student" })
                                 .then(res => {
                                     console.log(res);
                                     Swal.fire({

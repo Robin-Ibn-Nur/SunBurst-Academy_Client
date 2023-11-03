@@ -9,6 +9,7 @@ import AuthForm from "../SharedPages/GoogleButton/GoogleButton";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Dashbord from "../Layout/Dashbord/Dashbord";
 import StudentPage from "../DashBordPages/StudentPage/StudentPage";
+import Instructor from "../DashBordPages/StudentPage/Instructor/Instructor";
 
 
 export const router = createBrowserRouter([
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
             { path: "login", element: <Login /> },
             { path: "signUp", element: <SignUp /> },
             { path: "authForm", element: <AuthForm /> },
-            // { path: "error", element: <ErrorPage /> },
+            { path: "instructor", element: <Instructor /> },
         ]
     },
     {

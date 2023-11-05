@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"
+import { GoogleAuthProvider, createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"
 import React from 'react';
 import app from "../Firebase/firebase.config";
 import axios from "axios";
@@ -41,6 +41,11 @@ const AuthProvider = ({ children }) => {
         })
     }
 
+    const userDelete = (currentUser) => {
+        setLoading(true)
+        return deleteUser(currentUser)
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
@@ -75,6 +80,7 @@ const AuthProvider = ({ children }) => {
         signInWithGoogle,
         logOut,
         updateUserProfile,
+        userDelete
     }
     return (
         <AuthContext.Provider value={authInfo}>

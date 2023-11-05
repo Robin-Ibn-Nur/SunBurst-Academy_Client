@@ -10,6 +10,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Dashbord from "../Layout/Dashbord/Dashbord";
 import StudentPage from "../DashBordPages/StudentPage/StudentPage";
 import Instructor from "../DashBordPages/StudentPage/Instructor/Instructor";
+import Admin from "../DashBordPages/AdminPage/Admin";
 
 
 export const router = createBrowserRouter([
@@ -24,7 +25,8 @@ export const router = createBrowserRouter([
             { path: "login", element: <Login /> },
             { path: "signUp", element: <SignUp /> },
             { path: "authForm", element: <AuthForm /> },
-            { path: "instructor", element: <Instructor /> },
+            { path: "student", element: <StudentPage /> },
+            { path: "admin", element: <Admin /> },
         ]
     },
     {
@@ -38,10 +40,10 @@ export const router = createBrowserRouter([
             //     element: <Payment></Payment>
             // },
             // student dashbord
-            {
-                path: "student",
-                element: <StudentPage />
-            },
+            // {
+            //     path: "student",
+            //     element: <StudentPage />
+            // },
             // {
             //     path: "myEnrolledClass",
             //     element: <StudentRoute><MyEnrolledClasses></MyEnrolledClasses></StudentRoute>
@@ -51,6 +53,7 @@ export const router = createBrowserRouter([
             //     element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>
             // },
             // instructor dashbord
+            { path: "instructor", element: <Instructor /> },
             // {
             //     path: "addClass",
             //     element: <InstructorRoute><AddClasses></AddClasses></InstructorRoute>

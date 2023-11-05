@@ -33,13 +33,17 @@ const SignUp = () => {
             .then((result) => {
                 // Creating User 
                 const user = result.user;
+                const newUser = {
+                    name: data?.username, email: data?.email, photo: data?.imageUrl, role: "student"
+                }
                 if (user) {
-                    updateUserProfile(data?.name, data?.photoUrl)
+                    updateUserProfile(data?.username, data?.imageUrl)
                         // update user profile
                         .then(() => {
-                            axios.post('https://sun-burst-academy-server.vercel.app/users', { name: data?.name, email: data?.email, photo: data?.photoUrl, role: "student" })
+                            axios.post('https://sun-burst-academy-server.vercel.app/users', newUser)
                                 .then(res => {
                                     console.log(res);
+                                    console.log("newuser: ", newUser);
                                     Swal.fire({
                                         position: 'center',
                                         icon: 'success',

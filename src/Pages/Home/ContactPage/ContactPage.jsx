@@ -24,8 +24,8 @@ const ContactPage = () => {
     };
 
     return (
-        <Card style={contactBgImg} className="my-5">
-            <div className="p-10 space-y-4 text-white backdrop-filter backdrop-blur-sm bg-opacity-40">
+        <Card style={contactBgImg} className="my-5 reveal">
+            <div className=" reveal p-10 space-y-4 text-white backdrop-filter backdrop-blur-sm bg-opacity-40">
                 <h2 className="text-3xl font-bold">Contact Us</h2>
                 <Divider />
                 <form onSubmit={handleSubmit(onSubmit)}>

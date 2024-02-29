@@ -53,7 +53,7 @@ const PopulerInstructors = () => {
         }
     ];
     return (
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap justify-center reveal">
             {teachers.map((teacher) => (
                 <div key={teacher.id} className="w-full sm:w-1/2 md:w-1/4 p-4">
                     <div className="bg-white rounded-lg p-6">

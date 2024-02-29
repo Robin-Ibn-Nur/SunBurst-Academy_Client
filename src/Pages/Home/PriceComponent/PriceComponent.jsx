@@ -11,7 +11,7 @@ const PriceComponent = () => {
         triggerOnce: true,
     });
     return (
-        <div style={{ backgroundImage: "url(https://wallpapercave.com/wp/wp2858553.jpg)", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat" }} className="flex flex-col items-center justify-center py-5 lg:py-16 h-min-screen">
+        <div style={{ backgroundImage: "url(https://wallpapercave.com/wp/wp2858553.jpg)", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat" }} className="flex flex-col items-center justify-center py-5 lg:py-16 h-min-screen reveal">
             <motion.div
                 ref={ref}
                 variants={variants}

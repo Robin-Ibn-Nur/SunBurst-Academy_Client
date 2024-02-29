@@ -1,3 +1,4 @@
+import ScrollAnimation from "../../../Component/ScrollAnimation/ScrollAnimation";
 import useTitle from "../../../CustomHook/useTitle";
 import Banner from "../Banner/Banner";
 import ContactPage from "../ContactPage/ContactPage";
@@ -14,6 +15,7 @@ const Home = () => {
         <>
             <Content />
             <Banner />
+
             {/* populer class section */}
             <PopulerInstructors />
             <PriceComponent />

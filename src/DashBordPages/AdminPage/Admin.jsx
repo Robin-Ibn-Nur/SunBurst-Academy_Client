@@ -1,5 +1,6 @@
 import React from "react";
 import { FiTrash2, FiUserCheck, FiAward } from 'react-icons/fi'
+import { TbListDetails } from 'react-icons/tb'
 import {
     Table,
     TableHeader,
@@ -18,7 +19,6 @@ import {
     Pagination,
     Tooltip,
 } from "@nextui-org/react";
-import { PlusIcon } from "./Component/PlusIcon";
 import { SearchIcon } from "./Component/SearchIcon";
 import { ChevronDownIcon } from "./Component/ChevronDownIcon";
 import { columns, statusOptions } from "./Component/data";
@@ -27,14 +27,10 @@ import useAxiosSecure from "../../CustomHook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../CustomHook/useAuth";
+import { Link } from "react-router-dom";
 
-const statusColorMap = {
-    active: "success",
-    paused: "danger",
-    vacation: "warning",
-};
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["name", "role", "actions",];
 
 export default function Admin() {
     const { userDelete } = useAuth();
@@ -47,7 +43,11 @@ export default function Admin() {
 
         }
     });
-    console.log(users);
+
+
+
+
+
     const handleMakeAdmin = async (user) => {
         try {
             const response = await axiosSecure.patch(`/users/admin/${user._id}`);
@@ -165,49 +165,51 @@ export default function Admin() {
         });
     }, [sortDescriptor, items]);
 
-    const renderCell = React.useCallback((user, columnKey) => {
-        const cellValue = user[columnKey];
-
+    const renderCell = React.useCallback((item, columnKey) => {
+        const cellValue = item[columnKey];
         switch (columnKey) {
             case "name":
                 return (
                     <User
-                        avatarProps={{ radius: "lg", src: user?.photo }}
-                        description={user?.email}
+                        avatarProps={{ radius: "lg", src: item?.photo }}
+                        description={item?.email}
                         name={cellValue}
                     >
-                        {user?.email}
+                        {item?.email}
                     </User>
                 );
             case "role":
                 return (
                     <div className="flex flex-col">
                         <p className="text-bold text-small capitalize">{cellValue}</p>
-                        <p className="text-bold text-tiny capitalize text-default-400">{user?.team}</p>
+                        <p className="text-bold text-tiny capitalize text-default-400">{item?.team}</p>
                     </div>
                 );
-            case "status":
-                return (
-                    <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
-                        {cellValue}
-                    </Chip>
-                );
+            // case "status":
+            //     return (
+            //         <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
+            //             {cellValue}
+            //         </Chip>
+            //     );
+
+
+
             case "actions":
                 return (
-                    <div className="relative flex justify-end items-center gap-2">
+                    <div className="relative flex items-center gap-2">
                         <Tooltip content="Make Admin">
-                            <Button isIconOnly size="sm" variant="light" onClick={() => handleMakeAdmin(user)}>
-                                <FiUserCheck size={16} />
+                            <Button isIconOnly size="sm" variant="light" onClick={() => handleMakeAdmin(item)}>
+                                <FiUserCheck color="green" size={16} />
                             </Button>
                         </Tooltip>
                         <Tooltip content="Make Instructor">
-                            <Button isIconOnly size="sm" variant="light" onClick={() => handleMakeInstructor(user)}>
-                                <FiAward size={16} />
+                            <Button isIconOnly size="sm" variant="light" onClick={() => handleMakeInstructor(item)}>
+                                <FiAward color="gold" size={16} />
                             </Button>
                         </Tooltip>
-                        <Tooltip content="Delete">
-                            <Button isIconOnly size="sm" variant="light" onClick={() => handleDelete(user)}>
-                                <FiTrash2 size={16} />
+                        <Tooltip content="Delete user">
+                            <Button isIconOnly size="sm" variant="light" onClick={() => handleDelete(item)}>
+                                <FiTrash2 color="red" size={16} />
                             </Button>
                         </Tooltip>
                     </div>
@@ -305,8 +307,8 @@ export default function Admin() {
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                        <Button color="primary" endContent={<PlusIcon />}>
-                            Add New
+                        <Button color="primary" endContent={<TbListDetails />}>
+                            <Link to="/allClasses">See All Classes</Link>
                         </Button>
                     </div>
                 </div>

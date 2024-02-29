@@ -11,6 +11,7 @@ import Dashbord from "../Layout/Dashbord/Dashbord";
 import StudentPage from "../DashBordPages/StudentPage/StudentPage";
 import Instructor from "../DashBordPages/StudentPage/Instructor/Instructor";
 import Admin from "../DashBordPages/AdminPage/Admin";
+import AllClasses from "../DashBordPages/AdminPage/allClasses";
 
 
 export const router = createBrowserRouter([
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
             { path: "authForm", element: <AuthForm /> },
             { path: "student", element: <StudentPage /> },
             { path: "admin", element: <Admin /> },
+            { path: "allClasses", element: <AllClasses /> },
         ]
     },
     {

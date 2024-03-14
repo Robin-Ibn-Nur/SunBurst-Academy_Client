@@ -2,7 +2,6 @@ import React from 'react';
 import { Input, Button, Divider, Card } from '@nextui-org/react';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
-
 import contactImg from "../../../assets/Image/contact.jpg";
 
 const ContactPage = () => {

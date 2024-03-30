@@ -13,7 +13,6 @@ import Instructor from "../DashBordPages/StudentPage/Instructor/Instructor";
 import Admin from "../DashBordPages/AdminPage/Admin";
 import AllClasses from "../DashBordPages/AdminPage/allClasses";
 
-
 export const router = createBrowserRouter([
     {
         path: "/",
